@@ -1,0 +1,25 @@
+{{#if productos.length}}
+<table>
+    <tr>
+        <th>
+            Nombre
+        </th>
+
+        <th>
+            precio
+        </th>
+
+        <th>
+            imagen
+        </th>
+    </tr>
+    {{#each productos}}
+        <tr>
+            
+            <td>{{this.name}}</td>
+            <td>{{this.price}}</td>
+            <td><img src="{{this.img}}"></td>
+        </tr>
+    {{/each}}    
+</table>
+{{/if}}
