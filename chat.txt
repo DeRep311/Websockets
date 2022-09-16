@@ -1,10 +1,1 @@
-[
-  {
-    "Email": "cmmcxvmvc",
-    "Mensaje": "mdsfmdsm"
-  },
-  {
-    "Email": "cmmcxvmvc",
-    "Mensaje": "mdsfmdsm"
-  }
-]
+[]

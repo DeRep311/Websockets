@@ -1,25 +1,16 @@
 {{#if productos.length}}
-<table>
-    <tr>
-        <th>
-            Nombre
-        </th>
-
-        <th>
-            precio
-        </th>
-
-        <th>
-            imagen
-        </th>
-    </tr>
-    {{#each productos}}
+    <table>
         <tr>
-            
-            <td>{{this.name}}</td>
-            <td>{{this.price}}</td>
-            <td><img src="{{this.img}}"></td>
+            <th>Nombre</th>
+            <th>precio</th>
+            <th>imagen</th>
         </tr>
-    {{/each}}    
-</table>
+        {{#each productos}}
+            <tr>
+                <td>{{this.name}}</td>
+                <td>{{this.price}}</td>
+                <td><img src="{{this.img}}" width="100" height="100"></td>
+            </tr>
+        {{/each}}    
+    </table>
 {{/if}}
