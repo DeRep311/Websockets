@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Shampoo",
+    "price": "45",
+    "img": "https://www.kindpng.com/picc/m/694-6943972_url-logo-github-logo-clipart-png-download-hyperlink.png"
+  },
+  {
+    "name": "Shampoo",
+    "price": "45",
+    "img": "https://www.kindpng.com/picc/m/694-6943972_url-logo-github-logo-clipart-png-download-hyperlink.png"
+  }
+]

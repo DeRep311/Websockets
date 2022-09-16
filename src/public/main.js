@@ -4,6 +4,11 @@ let email = document.getElementById('Gmail')
 let mensaje = document.getElementById('mensaje')
 let chat = document.getElementById('chat')
 let btn = document.getElementById('envio')
+
+let Name= document.getElementById('Name')
+let price= document.getElementById('price')
+let img= document.getElementById('img')
+let btnIng= document.getElementById('submit')
 function obtenerPlantilla(productos){
     return fetch('plantillas/tabla-productos.hbs')
     .then(response=> response.text())
@@ -18,11 +23,20 @@ socket.on('productos', async productos=>{
     document.getElementById('productos').innerHTML=html
 })
 
+btnIng.addEventListener('click', ()=>{
+    socket.emit('newProduct', {
+        name: Name.value,
+        price: price.value,
+        img: img.value
+       
+    })
+})
 
 btn.addEventListener('click', () => {
     socket.emit('newMessage', {
         Email: email.value,
         Mensaje: mensaje.value
+       
     })
 })
 
