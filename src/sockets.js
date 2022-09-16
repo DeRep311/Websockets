@@ -8,7 +8,6 @@ export default (io) => {
 
         socket.on('newMessage', message => {
             messages.push(message)
-            console.log(messages);
             io.sockets.emit("chatMessage", message)
             fs.writeFile('./chat.txt', JSON.stringify(messages, null, 2), 'utf-8', err => console.log(err))
         })
