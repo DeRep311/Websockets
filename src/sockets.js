@@ -1,43 +1,53 @@
-import BD from "../Services/BD/knex";
-
-
+import BDa from "../Services/BD/Mongo/MongoDB";
+import { denormalizeData } from "./utils";
+const BD = new BDa(1);
 export default (io) => {
-    
-         //remplazo los fs por peticones a la bd
-   
+
+
     io.on("connection", socket => {
-        console.log('new user connected');
-        
-        socket.on('newMessage', async message => {
+        try {
+            const emitirMens = async () => {
+               const mensajes = await BD.Read();
+                io.sockets.emit("chatMessage",denormalizeData(mensajes));
+            }
+            emitirMens();
+        } catch (error) {
+            console.log(error);
+        }
+
+        socket.on('newMessage', async (message) => {
             try {
-                await BD.insetMsg(message)
-                io.sockets.emit("chatMessage", message)
+                
+               const mensajer= await BD.Create(message)
+               
+               
+               socket.emit('NewMessage',mensajer)
             } catch (error) {
                 console.log(error);
             }
-            
+
         })
 
-        socket.on('newProduct', async datos=>{
-            
-            const ProduAdd= {
+        socket.on('newProduct', async datos => {
+
+            const ProduAdd = {
                 name_Produ: datos.name,
                 Price: datos.price,
                 url: datos.img
             }
-    
-          try {
 
-           
-               await BD.insert(ProduAdd)
-                const producto =  JSON.parse(JSON.stringify(await BD.getAll()))
-                
-                io.sockets.emit('productos', producto)
-                
+            try {
+
+
+                await BD.insert(ProduAdd);
+                const producto = BD.Read();
+
+                io.sockets.emit('productos', producto);
+
             }
-           catch (error) {
-              console.log(error);
-          }
+            catch (error) {
+                console.log(error);
+            }
         })
     })
 
